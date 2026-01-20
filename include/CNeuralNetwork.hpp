@@ -809,6 +809,14 @@ public:
                                std::size_t jInput) const {
     return d2Outputs_dInputs2[iOutput][iInput][jInput];
   }
+
+  mlpdouble GetBias(std::size_t iLayer, std::size_t iNeuron) const {
+      if (iLayer >= total_layers.size()) {
+          throw std::runtime_error("CNeuralNetwork::GetBias: Layer index out of bounds.");
+      }
+      return total_layers[iLayer]->GetBias(iNeuron);
+  }
+  
   /*!
    * \brief Set the activation function array size.
    * \param[in] n_layers - network layer count.
